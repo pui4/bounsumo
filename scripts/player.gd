@@ -105,6 +105,7 @@ func attacks() -> void:
 	
 	if Input.is_action_just_pressed(input_addon + "parry") and parry_timer.time_left <= 0 and cooldown_timer.time_left <= 0 and sprite.frame != 6:
 		parry_timer.start()
+		can_move = false
 		player.play("RESET")
 		player.play("block")
 		sprite.frame = 3
@@ -152,6 +153,7 @@ func _on_parry_time_timeout() -> void:
 
 func _on_parry_cooldown_timeout() -> void:
 	sprite.frame = 0
+	can_move = true
 	player.play("RESET")
 
 func _on_anim_reset_timeout() -> void:
