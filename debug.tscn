@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_16g7q"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="4_obyai"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_e0a3d"]
+[ext_resource type="PackedScene" uid="uid://b2cqpaxil54re" path="res://assets/border.tscn" id="6_obyai"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7pjx"]
 size = Vector2(585, 43)
@@ -37,6 +38,7 @@ physics_interpolation_mode = 1
 top_level = true
 position = Vector2(294.72998, 94.5)
 zoom = Vector2(1.7129093, 1.7129093)
+process_callback = 0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D" unique_id=2092089874]
 process_priority = 300
@@ -55,3 +57,6 @@ follow_damping = true
 follow_damping_value = Vector2(1, 1)
 auto_zoom = true
 auto_zoom_margin = Vector4(143.54, 15, 150, 0)
+
+[node name="Border" parent="." unique_id=25908018 instance=ExtResource("6_obyai")]
+position = Vector2(2, 26)
