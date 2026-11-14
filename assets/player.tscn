@@ -4,10 +4,14 @@
 [ext_resource type="SpriteFrames" uid="uid://cx7koylhoqv1m" path="res://sprites/character.tres" id="2_3mip4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7pjx"]
-size = Vector2(64, 64)
+size = Vector2(15, 61)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8evv"]
-size = Vector2(95, 90)
+size = Vector2(73, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yf5fn"]
+radius = 15.0
+height = 64.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1324172989 groups=["Players"]]
 script = ExtResource("1_3mip4")
@@ -16,14 +20,16 @@ script = ExtResource("1_3mip4")
 position = Vector2(-9.536743e-07, -9.536743e-07)
 scale = Vector2(1.3333334, 1.3333334)
 sprite_frames = ExtResource("2_3mip4")
+frame = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1972885310]
+position = Vector2(-7, 0)
 shape = SubResource("RectangleShape2D_r7pjx")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1165738654]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1092996154]
-position = Vector2(0.5, 1)
+position = Vector2(3.5, 12)
 shape = SubResource("RectangleShape2D_y8evv")
 
 [node name="ParryTime" type="Timer" parent="." unique_id=75240025]
@@ -32,6 +38,11 @@ one_shot = true
 
 [node name="ParryCooldown" type="Timer" parent="." unique_id=880034167]
 one_shot = true
+
+[node name="hurtbox" type="Area2D" parent="." unique_id=1952810890]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=910159817]
+shape = SubResource("CapsuleShape2D_yf5fn")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
