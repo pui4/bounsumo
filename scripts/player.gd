@@ -130,6 +130,7 @@ func get_attacked(body: CharacterBody2D) -> void:
 		sprite.frame = 0
 		player.play("RESET")
 		body.success_parry()
+		can_move = true
 
 func success_parry() -> void:
 	velocity = Vector2(parry_knockback * direction, 0)
