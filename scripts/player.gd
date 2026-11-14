@@ -89,8 +89,8 @@ func attacks() -> void:
 		sprite.frame = 7
 		if target_player != null and parry_timer.time_left <= 0:
 			target_player.get_attacked(self)
-		anim_timer.start()
-		can_move = true
+		anim_timer.start(0.2)
+		can_move = false
 	
 	if Input.is_action_just_pressed(input_addon + "parry") and parry_timer.time_left <= 0:
 		parry_timer.start()
@@ -111,6 +111,7 @@ func get_attacked(body: CharacterBody2D) -> void:
 func success_parry() -> void:
 	velocity = Vector2(parry_knockback * direction, 0)
 	sprite.frame = 2
+	can_move = false
 	anim_timer.start()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -130,3 +131,4 @@ func _on_parry_cooldown_timeout() -> void:
 
 func _on_anim_reset_timeout() -> void:
 	sprite.frame = 0
+	can_move = true
