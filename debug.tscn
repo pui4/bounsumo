@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="4_obyai"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_e0a3d"]
 [ext_resource type="PackedScene" uid="uid://b2cqpaxil54re" path="res://assets/border.tscn" id="6_obyai"]
+[ext_resource type="Texture2D" uid="uid://dybvw05pyl3h7" path="res://sprites/bg.png" id="7_e0a3d"]
+[ext_resource type="Script" uid="uid://5khmb5iu2my1" path="res://scripts/background.gd" id="8_jwave"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7pjx"]
 size = Vector2(585, 43)
@@ -64,3 +66,10 @@ position = Vector2(20, -10)
 [node name="Border2" parent="." unique_id=99440798 instance=ExtResource("6_obyai")]
 position = Vector2(586, -9)
 right = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=795185641]
+z_index = -873
+position = Vector2(324, 110.000015)
+scale = Vector2(3.3177085, 3.3177083)
+texture = ExtResource("7_e0a3d")
+script = ExtResource("8_jwave")
