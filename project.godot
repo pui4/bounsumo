@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="hackclub-bounceback"
-run/main_scene="uid://bk4jp8ak8xsct"
+run/main_scene="uid://di54gfgmdwejh"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 

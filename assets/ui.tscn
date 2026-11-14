@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://ck8wfvd4rqbrl"]
 
+[ext_resource type="Script" uid="uid://oy5qhbjwnxxg" path="res://scripts/ui.gd" id="1_etwi0"]
+
 [node name="UI" type="Control" unique_id=1072975236]
 layout_mode = 3
 anchors_preset = 15
@@ -7,6 +9,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_etwi0")
+metadata/_edit_use_anchors_ = true
 
 [node name="p1Health" type="RichTextLabel" parent="." unique_id=94858379]
 layout_mode = 1
@@ -18,9 +22,9 @@ offset_right = 179.0
 grow_vertical = 0
 theme_override_font_sizes/normal_font_size = 49
 bbcode_enabled = true
-text = "[wave][center]100%"
+text = "[wave][center]0%"
 
-[node name="p1Health2" type="RichTextLabel" parent="." unique_id=1231925856]
+[node name="p2Health" type="RichTextLabel" parent="." unique_id=1231925856]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -33,4 +37,14 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/normal_font_size = 49
 bbcode_enabled = true
-text = "[wave][center]100%"
+text = "[wave][center]0%"
+
+[node name="score" type="RichTextLabel" parent="." unique_id=1352638187]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 160.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 63
+bbcode_enabled = true
+text = "[center]0:0"

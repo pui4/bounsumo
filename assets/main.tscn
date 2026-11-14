@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://di54gfgmdwejh"]
+
+[ext_resource type="Texture2D" uid="uid://dybvw05pyl3h7" path="res://sprites/bg.png" id="1_2d37k"]
+[ext_resource type="Script" uid="uid://eu2oudp6acr5" path="res://scripts/main.gd" id="1_836ik"]
+[ext_resource type="PackedScene" uid="uid://bk4jp8ak8xsct" path="res://debug.tscn" id="1_db5cl"]
+[ext_resource type="PackedScene" uid="uid://ck8wfvd4rqbrl" path="res://assets/ui.tscn" id="2_06ig3"]
+
+[node name="main" type="Control" unique_id=1915552537]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_836ik")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=653914057]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2d37k")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1154509232]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=548602739]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="debug" parent="SubViewportContainer/SubViewport" unique_id=456555488 instance=ExtResource("1_db5cl")]
+
+[node name="UI" parent="." unique_id=1072975236 instance=ExtResource("2_06ig3")]
+layout_mode = 1
