@@ -19,8 +19,6 @@ func _physics_process(delta: float) -> void:
 		var distance = target_body.global_position.x - global_position.x
 		if right:
 			distance *= -1
-			
-		print(distance)
 		
 		if distance <= -out_range or distance >= in_range:
 			target_body = null

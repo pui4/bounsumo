@@ -15,6 +15,7 @@ extends CharacterBody2D
 @onready var parry_timer := $"ParryTime"
 @onready var cooldown_timer := $"ParryCooldown"
 @onready var anim_timer := $"AnimReset"
+@onready var hold_timer := $"HoldTime"
 @onready var sprite1 := $"Sprite2D"
 @onready var sprite2 := $"Sprite2D2"
 
@@ -28,6 +29,7 @@ var done_boost
 var target_player : CharacterBody2D
 
 var can_move := true
+var can_attack := false
 
 func _ready() -> void:
 	if is_player2:
@@ -58,13 +60,13 @@ func _physics_process(delta: float) -> void:
 		elif axis == 0 and done_boost:
 			done_boost = false
 	
+	attacks()
+	
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
 	velocity.x /= friction
 	velocity.y /= air_friction
-	
-	attacks()
 	
 	move_and_slide()
 	
@@ -82,17 +84,13 @@ func _physics_process(delta: float) -> void:
 		direction = -1
 
 func attacks() -> void:
-	if Input.is_action_pressed(input_addon + "attack"):
+	if Input.is_action_pressed(input_addon + "attack") and can_move:
 		sprite.frame = 6
 		can_move = false
-	if Input.is_action_just_released(input_addon + "attack"):
-		sprite.frame = 7
-		if target_player != null and parry_timer.time_left <= 0:
-			target_player.get_attacked(self)
-		anim_timer.start(0.2)
-		can_move = false
+		hold_timer.start()
+	#if Input.is_action_just_released(input_addon + "attack") and sprite.frame == 6 and can_attack:
 	
-	if Input.is_action_just_pressed(input_addon + "parry") and parry_timer.time_left <= 0:
+	if Input.is_action_just_pressed(input_addon + "parry") and parry_timer.time_left <= 0 and cooldown_timer.time_left <= 0:
 		parry_timer.start()
 		sprite.frame = 3
 
@@ -132,3 +130,11 @@ func _on_parry_cooldown_timeout() -> void:
 func _on_anim_reset_timeout() -> void:
 	sprite.frame = 0
 	can_move = true
+
+func _on_hold_time_timeout() -> void:
+	sprite.frame = 7
+	if target_player != null and parry_timer.time_left <= 0:
+		target_player.get_attacked(self)
+	anim_timer.start(0.2)
+	can_move = false
+	#can_attack = false
