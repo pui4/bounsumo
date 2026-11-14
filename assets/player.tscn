@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://thvtv3emmplw" path="res://scripts/player.gd" id="1_3mip4"]
 [ext_resource type="SpriteFrames" uid="uid://cx7koylhoqv1m" path="res://sprites/character.tres" id="2_3mip4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7pjx"]
-size = Vector2(15, 61)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8evv"]
 size = Vector2(73, 16)
 
@@ -20,11 +17,6 @@ script = ExtResource("1_3mip4")
 position = Vector2(-9.536743e-07, -9.536743e-07)
 scale = Vector2(1.3333334, 1.3333334)
 sprite_frames = ExtResource("2_3mip4")
-frame = 7
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1972885310]
-position = Vector2(-7, 0)
-shape = SubResource("RectangleShape2D_r7pjx")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1165738654]
 
@@ -39,12 +31,14 @@ one_shot = true
 [node name="ParryCooldown" type="Timer" parent="." unique_id=880034167]
 one_shot = true
 
-[node name="hurtbox" type="Area2D" parent="." unique_id=1952810890]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=910159817]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=910159817]
 shape = SubResource("CapsuleShape2D_yf5fn")
+
+[node name="AnimReset" type="Timer" parent="." unique_id=2123322940]
+one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="ParryTime" to="." method="_on_parry_time_timeout"]
 [connection signal="timeout" from="ParryCooldown" to="." method="_on_parry_cooldown_timeout"]
+[connection signal="timeout" from="AnimReset" to="." method="_on_anim_reset_timeout"]

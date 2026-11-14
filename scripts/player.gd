@@ -14,6 +14,7 @@ extends CharacterBody2D
 
 @onready var parry_timer := $"ParryTime"
 @onready var cooldown_timer := $"ParryCooldown"
+@onready var anim_timer := $"AnimReset"
 @onready var sprite := $"Sprite2D"
 
 var damage := 0
@@ -37,6 +38,11 @@ func _physics_process(delta: float) -> void:
 	if cooldown_timer.time_left <= 0 and parry_timer.time_left <= 0:
 		velocity.x += axis * move_speed * delta
 		
+		if axis != 0 and sprite.frame == 0:
+			sprite.frame = 1
+		elif axis == 0 and sprite.frame == 1:
+			sprite.frame = 0
+		
 		if axis != 0 and not done_boost:
 			velocity.x = axis * boost
 			done_boost = true
@@ -59,7 +65,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		target = Lib.player1.position
 	
-	sprite.flip_h = target.x - position.x < 0
+	if target.x - position.x < 0:
+		sprite.flip_h = true
+		direction = 1
+	else:
+		sprite.flip_h = false
+		direction = -1
 
 func attacks() -> void:
 	if target_player != null and Input.is_action_just_pressed(input_addon + "attack"):
@@ -67,18 +78,22 @@ func attacks() -> void:
 	
 	if Input.is_action_just_pressed(input_addon + "parry") and parry_timer.time_left <= 0:
 		parry_timer.start()
-		sprite.modulate = Color.RED
+		sprite.frame = 3
+		anim_timer.start()
 
 func get_attacked(body: CharacterBody2D) -> void:
 	if parry_timer.time_left <= 0:
 		damage += 5
 		
 		velocity = Vector2(base_knockback * damage * direction, -base_knockback_up * damage)
+		sprite.frame = 5
+		anim_timer.start()
 	else:
 		body.success_parry()
 
 func success_parry() -> void:
 	velocity = Vector2(parry_knockback * direction, 0)
+	sprite.frame = 2
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):
@@ -89,9 +104,11 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		target_player = null
 
 func _on_parry_time_timeout() -> void:
-	sprite.modulate = Color.WHITE
 	cooldown_timer.start()
-	sprite.modulate = Color.BLUE
+	sprite.frame = 4
 
 func _on_parry_cooldown_timeout() -> void:
-	sprite.modulate = Color.WHITE
+	sprite.frame = 0
+
+func _on_anim_reset_timeout() -> void:
+	sprite.frame = 0
