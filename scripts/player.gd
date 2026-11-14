@@ -19,6 +19,7 @@ extends CharacterBody2D
 var damage := 0
 
 var input_addon : String
+var direction := -1
 var done_boost
 var target_player : CharacterBody2D
 
@@ -26,6 +27,7 @@ func _ready() -> void:
 	if is_player2:
 		Lib.player2 = self
 		input_addon = "p2_"
+		direction = 1
 	else:
 		Lib.player1 = self
 
@@ -71,12 +73,12 @@ func get_attacked(body: CharacterBody2D) -> void:
 	if parry_timer.time_left <= 0:
 		damage += 5
 		
-		velocity = Vector2(base_knockback * damage, -base_knockback_up * damage)
+		velocity = Vector2(base_knockback * damage * direction, -base_knockback_up * damage)
 	else:
 		body.success_parry()
 
 func success_parry() -> void:
-	velocity = Vector2(-parry_knockback, 0)
+	velocity = Vector2(parry_knockback * direction, 0)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):
