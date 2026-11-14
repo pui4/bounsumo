@@ -311,9 +311,14 @@ one_shot = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1713083357]
 libraries/ = SubResource("AnimationLibrary_rug40")
 
+[node name="hit stun" type="Timer" parent="." unique_id=1593198574]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="ParryTime" to="." method="_on_parry_time_timeout"]
 [connection signal="timeout" from="ParryCooldown" to="." method="_on_parry_cooldown_timeout"]
 [connection signal="timeout" from="AnimReset" to="." method="_on_anim_reset_timeout"]
 [connection signal="timeout" from="HoldTime" to="." method="_on_hold_time_timeout"]
+[connection signal="timeout" from="hit stun" to="." method="_on_hit_stun_timeout"]

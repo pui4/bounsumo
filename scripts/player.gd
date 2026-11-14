@@ -118,6 +118,11 @@ func get_attacked(body: CharacterBody2D) -> void:
 		player.play("RESET")
 		player.play("hit")
 		anim_timer.start()
+		
+		$"hit stun".start()
+		can_move = false
+		can_attack = false
+		
 	else:
 		parry_timer.stop()
 		sprite.frame = 0
@@ -163,3 +168,8 @@ func _on_hold_time_timeout() -> void:
 	player.play("RESET")
 	player.play("kick")
 	#can_attack = false
+
+
+func _on_hit_stun_timeout() -> void:
+	can_move = true
+	can_attack = true
