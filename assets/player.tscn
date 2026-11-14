@@ -75,15 +75,210 @@ size = Vector2(73, 16)
 radius = 15.0
 height = 64.0
 
+[sub_resource type="Animation" id="Animation_rug40"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:additional_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yceh7"]
+resource_name = "block"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(6.2766724, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.2)]
+}
+
+[sub_resource type="Animation" id="Animation_uovkd"]
+resource_name = "block rest"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.96666664, 1),
+"transitions": PackedFloat32Array(0.079129435, 6.2766805, 1),
+"update": 0,
+"values": [Vector2(1, 1.2), Vector2(1.1, 0.9), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.96666664, 1),
+"transitions": PackedFloat32Array(0.07, 0.07, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 8.53), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:additional_rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.96666664, 1),
+"transitions": PackedFloat32Array(0.2, 1, 1),
+"update": 0,
+"values": [0.0, -0.05, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_mxi64"]
+resource_name = "charge"
+length = 0.19999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:additional_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.25881687, 1.7411016),
+"update": 0,
+"values": [0.0, 0.2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 0.19614607),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.95, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_insbl"]
+resource_name = "dash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.4, 0.7), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jeibo"]
+resource_name = "hit"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(0.10153148, 1, 1),
+"update": 0,
+"values": [Vector2(1.2, 0.6), Vector2(1, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nsdob"]
+resource_name = "kick"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:additional_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 0.105112225),
+"update": 0,
+"values": [0.1, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.28717458, 0.31864014),
+"update": 0,
+"values": [Vector2(1, 0.6), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rug40"]
+_data = {
+&"RESET": SubResource("Animation_rug40"),
+&"block": SubResource("Animation_yceh7"),
+&"block rest": SubResource("Animation_uovkd"),
+&"charge": SubResource("Animation_mxi64"),
+&"dash": SubResource("Animation_insbl"),
+&"hit": SubResource("Animation_jeibo"),
+&"kick": SubResource("Animation_nsdob")
+}
+
 [node name="Player" type="CharacterBody2D" unique_id=1324172989 groups=["Players"]]
 script = ExtResource("1_3mip4")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1072235579]
+[node name="Node2D" type="Node2D" parent="." unique_id=1732456100]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Node2D" unique_id=1072235579]
 position = Vector2(-3.3881318e-21, 2)
 scale = Vector2(1.3333334, 1.3333334)
 sprite_frames = ExtResource("2_3mip4")
 
-[node name="Sprite2D2" type="AnimatedSprite2D" parent="." unique_id=819124920]
+[node name="Sprite2D2" type="AnimatedSprite2D" parent="Node2D" unique_id=819124920]
 visible = false
 position = Vector2(-3.3881318e-21, 2)
 scale = Vector2(1.3333334, 1.3333334)
@@ -92,7 +287,8 @@ sprite_frames = SubResource("SpriteFrames_7rrun")
 [node name="Area2D" type="Area2D" parent="." unique_id=1165738654]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1092996154]
-position = Vector2(3.5, 12)
+position = Vector2(0, 12)
+scale = Vector2(1.15, 1)
 shape = SubResource("RectangleShape2D_y8evv")
 
 [node name="ParryTime" type="Timer" parent="." unique_id=75240025]
@@ -112,9 +308,17 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1713083357]
+libraries/ = SubResource("AnimationLibrary_rug40")
+
+[node name="hit stun" type="Timer" parent="." unique_id=1593198574]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="ParryTime" to="." method="_on_parry_time_timeout"]
 [connection signal="timeout" from="ParryCooldown" to="." method="_on_parry_cooldown_timeout"]
 [connection signal="timeout" from="AnimReset" to="." method="_on_anim_reset_timeout"]
 [connection signal="timeout" from="HoldTime" to="." method="_on_hold_time_timeout"]
+[connection signal="timeout" from="hit stun" to="." method="_on_hit_stun_timeout"]
