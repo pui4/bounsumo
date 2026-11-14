@@ -1,10 +1,10 @@
 extends Area2D
 
 @export var right : bool
-@export var strength := 50
+@export var strength := 75
 @export var elasticity := 10
-@export var out_range := 400
-@export var in_range := 40
+@export var out_range := 250
+@export var in_range := 10
 
 @onready var line := $"Line2D"
 
