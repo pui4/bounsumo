@@ -57,7 +57,7 @@ is_player2 = true
 physics_interpolation_mode = 1
 top_level = true
 position = Vector2(294.72998, 94.5)
-offset = Vector2(0.04257325, 1.0399133)
+offset = Vector2(0.06665944, -0.122878075)
 zoom = Vector2(1.7129093, 1.7129093)
 process_callback = 0
 
@@ -90,4 +90,4 @@ script = ExtResource("8_jwave")
 camera = NodePath("../Camera2D")
 
 [node name="Death" parent="." unique_id=1554781492 instance=ExtResource("10_6xqm2")]
-position = Vector2(303, 335)
+position = Vector2(303, 549)
