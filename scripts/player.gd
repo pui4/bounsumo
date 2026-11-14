@@ -15,7 +15,10 @@ extends CharacterBody2D
 @onready var parry_timer := $"ParryTime"
 @onready var cooldown_timer := $"ParryCooldown"
 @onready var anim_timer := $"AnimReset"
-@onready var sprite := $"Sprite2D"
+@onready var sprite1 := $"Sprite2D"
+@onready var sprite2 := $"Sprite2D2"
+
+var sprite : AnimatedSprite2D
 
 var damage := 0
 
@@ -31,7 +34,11 @@ func _ready() -> void:
 		Lib.player2 = self
 		input_addon = "p2_"
 		direction = 1
+		sprite1.hide()
+		sprite2.show()
+		sprite = sprite2
 	else:
+		sprite = sprite1
 		Lib.player1 = self
 
 func _physics_process(delta: float) -> void:
