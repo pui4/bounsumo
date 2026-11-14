@@ -59,4 +59,8 @@ auto_zoom = true
 auto_zoom_margin = Vector4(143.54, 15, 150, 0)
 
 [node name="Border" parent="." unique_id=25908018 instance=ExtResource("6_obyai")]
-position = Vector2(2, 26)
+position = Vector2(20, -10)
+
+[node name="Border2" parent="." unique_id=99440798 instance=ExtResource("6_obyai")]
+position = Vector2(586, -9)
+right = true
