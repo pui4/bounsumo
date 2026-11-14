@@ -57,7 +57,7 @@ is_player2 = true
 physics_interpolation_mode = 1
 top_level = true
 position = Vector2(294.72998, 94.5)
-offset = Vector2(0.72618234, 0.6334721)
+offset = Vector2(0.04257325, 1.0399133)
 zoom = Vector2(1.7129093, 1.7129093)
 process_callback = 0
 
