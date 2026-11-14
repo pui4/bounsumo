@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bk4jp8ak8xsct"]
 
-[ext_resource type="Texture2D" uid="uid://dmj7wudhb7ar2" path="res://icon.svg" id="1_1uwqr"]
+[ext_resource type="Texture2D" uid="uid://bkd0offk54k0i" path="res://sprites/stage.png" id="1_pk40j"]
 [ext_resource type="PackedScene" uid="uid://of8al7b1r1i5" path="res://assets/player.tscn" id="2_lvjdj"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_16g7q"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="4_obyai"]
@@ -28,8 +28,9 @@ metadata/_custom_type_script = "uid://dimvdouy8g0sv"
 position = Vector2(304, 212)
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1592536680]
-scale = Vector2(4.5625, 0.3359375)
-texture = ExtResource("1_1uwqr")
+position = Vector2(0, 78)
+scale = Vector2(1.07, 1.07)
+texture = ExtResource("1_pk40j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1956238168]
 position = Vector2(-0.5, -0.5)
@@ -46,7 +47,7 @@ is_player2 = true
 physics_interpolation_mode = 1
 top_level = true
 position = Vector2(294.72998, 94.5)
-offset = Vector2(0.027588848, 0.97492605)
+offset = Vector2(-1.0922585, -1.3117355)
 zoom = Vector2(1.7129093, 1.7129093)
 process_callback = 0
 
