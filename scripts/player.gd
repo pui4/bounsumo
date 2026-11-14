@@ -103,7 +103,7 @@ func attacks() -> void:
 		player.play("charge")
 	#if Input.is_action_just_released(input_addon + "attack") and sprite.frame == 6 and can_attack:
 	
-	if Input.is_action_just_pressed(input_addon + "parry") and parry_timer.time_left <= 0 and cooldown_timer.time_left <= 0:
+	if Input.is_action_just_pressed(input_addon + "parry") and parry_timer.time_left <= 0 and cooldown_timer.time_left <= 0 and sprite.frame != 6:
 		parry_timer.start()
 		player.play("RESET")
 		player.play("block")
@@ -112,6 +112,7 @@ func attacks() -> void:
 func get_attacked(body: CharacterBody2D) -> void:
 	if parry_timer.time_left <= 0:
 		damage += 5
+		Lib.health_change.emit(is_player2, damage)
 		
 		velocity = Vector2(base_knockback * damage * direction, -base_knockback_up * damage)
 		sprite.frame = 5
