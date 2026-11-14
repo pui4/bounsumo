@@ -14,7 +14,7 @@ height = 64.0
 script = ExtResource("1_3mip4")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1072235579]
-position = Vector2(-9.536743e-07, -9.536743e-07)
+position = Vector2(-3.3881318e-21, 2)
 scale = Vector2(1.3333334, 1.3333334)
 sprite_frames = ExtResource("2_3mip4")
 

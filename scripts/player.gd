@@ -24,6 +24,8 @@ var direction := -1
 var done_boost
 var target_player : CharacterBody2D
 
+var can_move := true
+
 func _ready() -> void:
 	if is_player2:
 		Lib.player2 = self
@@ -35,7 +37,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var axis := Input.get_axis(input_addon + "left", input_addon + "right")
 	
-	if cooldown_timer.time_left <= 0 and parry_timer.time_left <= 0:
+	if cooldown_timer.time_left <= 0 and parry_timer.time_left <= 0 and can_move:
 		velocity.x += axis * move_speed * delta
 		
 		if axis != 0 and sprite.frame == 0:
@@ -73,13 +75,19 @@ func _physics_process(delta: float) -> void:
 		direction = -1
 
 func attacks() -> void:
-	if target_player != null and Input.is_action_just_pressed(input_addon + "attack"):
-		target_player.get_attacked(self)
+	if Input.is_action_pressed(input_addon + "attack"):
+		sprite.frame = 6
+		can_move = false
+	if Input.is_action_just_released(input_addon + "attack"):
+		sprite.frame = 7
+		if target_player != null and parry_timer.time_left <= 0:
+			target_player.get_attacked(self)
+		anim_timer.start()
+		can_move = true
 	
 	if Input.is_action_just_pressed(input_addon + "parry") and parry_timer.time_left <= 0:
 		parry_timer.start()
 		sprite.frame = 3
-		anim_timer.start()
 
 func get_attacked(body: CharacterBody2D) -> void:
 	if parry_timer.time_left <= 0:
@@ -89,14 +97,17 @@ func get_attacked(body: CharacterBody2D) -> void:
 		sprite.frame = 5
 		anim_timer.start()
 	else:
+		parry_timer.stop()
+		sprite.frame = 0
 		body.success_parry()
 
 func success_parry() -> void:
 	velocity = Vector2(parry_knockback * direction, 0)
 	sprite.frame = 2
+	anim_timer.start()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Players"):
+	if body.is_in_group("Players") and body != self:
 		target_player = body
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
