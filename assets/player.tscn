@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://of8al7b1r1i5"]
+
+[ext_resource type="Script" uid="uid://thvtv3emmplw" path="res://scripts/player.gd" id="1_3mip4"]
+[ext_resource type="Texture2D" uid="uid://dmj7wudhb7ar2" path="res://icon.svg" id="1_674bt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7pjx"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8evv"]
+size = Vector2(95, 90)
+
+[node name="Player" type="CharacterBody2D" unique_id=1324172989 groups=["Players"]]
+script = ExtResource("1_3mip4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1978017748]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_674bt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1972885310]
+shape = SubResource("RectangleShape2D_r7pjx")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1165738654]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1092996154]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_y8evv")
+
+[node name="ParryTime" type="Timer" parent="." unique_id=75240025]
+wait_time = 0.5
+one_shot = true
+
+[node name="ParryCooldown" type="Timer" parent="." unique_id=880034167]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="ParryTime" to="." method="_on_parry_time_timeout"]
+[connection signal="timeout" from="ParryCooldown" to="." method="_on_parry_cooldown_timeout"]
