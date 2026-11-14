@@ -112,7 +112,7 @@ func attacks() -> void:
 
 func get_attacked(body: CharacterBody2D) -> void:
 	if parry_timer.time_left <= 0:
-		damage += 5
+		damage += 17
 		Lib.health_change.emit(is_player2, damage)
 		
 		velocity = Vector2(base_knockback * damage * direction, -base_knockback_up * damage)

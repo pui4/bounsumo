@@ -15,4 +15,4 @@ func _on_heath_change(player2: bool, new_val: int) -> void:
 		p1_text.text = "[wave][center]" + str(new_val) + "%"
 
 func _on_death():
-	score_text.text = str(Lib.p1_score) + ":" + str(Lib.p2_score)
+	score_text.text = "[center]" + str(Lib.p1_score) + ":" + str(Lib.p2_score)
