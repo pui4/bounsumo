@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var additional_rotation = 0.0
+
 @export var is_player2 : bool
 
 @export var move_speed := 2000
@@ -7,7 +9,7 @@ extends CharacterBody2D
 @export var air_friction := 1.01
 @export var gravity := 1000
 @export var base_knockback := 50
-@export var base_knockback_up := 25
+@export var base_knockback_up := 15
 @export var parry_knockback := 750
 
 @export var boost := 500
@@ -16,8 +18,9 @@ extends CharacterBody2D
 @onready var cooldown_timer := $"ParryCooldown"
 @onready var anim_timer := $"AnimReset"
 @onready var hold_timer := $"HoldTime"
-@onready var sprite1 := $"Sprite2D"
-@onready var sprite2 := $"Sprite2D2"
+@onready var sprite1 := $Node2D/Sprite2D
+@onready var sprite2 := $Node2D/Sprite2D2
+@onready var player := $AnimationPlayer
 
 var sprite : AnimatedSprite2D
 
@@ -31,6 +34,8 @@ var target_player : CharacterBody2D
 var can_move := true
 var can_attack := false
 
+
+
 func _ready() -> void:
 	if is_player2:
 		Lib.player2 = self
@@ -43,6 +48,9 @@ func _ready() -> void:
 		sprite = sprite1
 		Lib.player1 = self
 
+func _process(delta: float) -> void:
+	rotation = additional_rotation * direction
+
 func _physics_process(delta: float) -> void:
 	var axis := Input.get_axis(input_addon + "left", input_addon + "right")
 	
@@ -51,6 +59,8 @@ func _physics_process(delta: float) -> void:
 		
 		if axis != 0 and sprite.frame == 0:
 			sprite.frame = 1
+			player.play("RESET")
+			player.play("dash")
 		elif axis == 0 and sprite.frame == 1:
 			sprite.frame = 0
 		
@@ -85,13 +95,18 @@ func _physics_process(delta: float) -> void:
 
 func attacks() -> void:
 	if Input.is_action_pressed(input_addon + "attack") and can_move:
+		velocity.x += 150 * direction
 		sprite.frame = 6
 		can_move = false
 		hold_timer.start()
+		player.play("RESET")
+		player.play("charge")
 	#if Input.is_action_just_released(input_addon + "attack") and sprite.frame == 6 and can_attack:
 	
 	if Input.is_action_just_pressed(input_addon + "parry") and parry_timer.time_left <= 0 and cooldown_timer.time_left <= 0:
 		parry_timer.start()
+		player.play("RESET")
+		player.play("block")
 		sprite.frame = 3
 
 func get_attacked(body: CharacterBody2D) -> void:
@@ -100,10 +115,13 @@ func get_attacked(body: CharacterBody2D) -> void:
 		
 		velocity = Vector2(base_knockback * damage * direction, -base_knockback_up * damage)
 		sprite.frame = 5
+		player.play("RESET")
+		player.play("hit")
 		anim_timer.start()
 	else:
 		parry_timer.stop()
 		sprite.frame = 0
+		player.play("RESET")
 		body.success_parry()
 
 func success_parry() -> void:
@@ -122,19 +140,26 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _on_parry_time_timeout() -> void:
 	cooldown_timer.start()
+	player.play("RESET")
+	player.play("block rest")
 	sprite.frame = 4
 
 func _on_parry_cooldown_timeout() -> void:
 	sprite.frame = 0
+	player.play("RESET")
 
 func _on_anim_reset_timeout() -> void:
 	sprite.frame = 0
+	player.play("RESET")
 	can_move = true
 
 func _on_hold_time_timeout() -> void:
 	sprite.frame = 7
+	velocity.x -= 350 * direction
 	if target_player != null and parry_timer.time_left <= 0:
 		target_player.get_attacked(self)
 	anim_timer.start(0.2)
 	can_move = false
+	player.play("RESET")
+	player.play("kick")
 	#can_attack = false
